@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sans:
+    "Open Sans", "Open Sans Fallback", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+}
+
+/* =========================================
+   PAPER THEME
+   ========================================= */
+
+/* Paper + Light */
+[data-theme="paper"][data-appearance="light"] {
+  --color-bg: #f5f4f0;
+  --color-bg-alt: #eeeee8;
+  --color-bg-elevated: #f5f4f0;
+  --color-bg-code: #eeeee8;
+  --color-bg-hover: #e8e7e2;
+  --color-text: #111110;
+  --color-text-secondary: #333330;
+  --color-text-muted: #5a5a52;
+  --color-border: #d0cfc9;
+  --color-border-subtle: #e0dfd9;
+  --color-border-hover: #c0bfb9;
+  --color-accent: #1a1a18;
+  --color-accent-hover: #333330;
+  --color-accent-subtle: #1a1a180f;
+  --color-code-bg: #eeeee8;
+  --color-code-text: #333330;
+  --color-blockquote-border: #d0cfc9;
+  --color-blockquote-bg: #eeeee8;
+  --color-overlay-bg: #0000004d;
+  --color-header-bg: #f5f4f0;
+  --color-text-inverse: #f5f4f0;
+  --shadow-color: #0000000a;
+  --shadow-color-md: #0000000a;
+  --shadow-color-lg: #0000000f;
+}
+
+/* Paper + Dark */
+[data-theme="paper"][data-appearance="dark"] {
+  --color-bg: #111110;
+  --color-bg-alt: #1a1a18;
+  --color-bg-elevated: #1e1e1c;
+  --color-bg-code: #1a1a18;
+  --color-bg-hover: #252524;
+  --color-text: #f5f4f0;
+  --color-text-secondary: #ccccca;
+  --color-text-muted: #a8a8a0;
+  --color-border: #2a2a28;
+  --color-border-subtle: #222220;
+  --color-border-hover: #3a3a38;
+  --color-accent: #e8e7e2;
+  --color-accent-hover: #ccccca;
+  --color-accent-subtle: #e8e7e214;
+  --color-code-bg: #1a1a18;
+  --color-code-text: #ccccca;
+  --color-blockquote-border: #333330;
+  --color-blockquote-bg: #1a1a18;
+  --color-overlay-bg: #00000080;
+  --color-header-bg: #111110;
+  --color-text-inverse: #111110;
+  --shadow-color: #0003;
+  --shadow-color-md: #00000040;
+  --shadow-color-lg: #0000004d;
+}
+
+/* =========================================
+   HIGH CONTRAST THEME
+   ========================================= */
+
+/* High Contrast + Light */
+[data-theme="high-contrast"][data-appearance="light"] {
+  --color-bg: #fff;
+  --color-bg-alt: #f0f0f0;
+  --color-bg-elevated: #fff;
+  --color-bg-code: #f0f0f0;
+  --color-bg-hover: #e6e6e6;
+  --color-text: #000;
+  --color-text-secondary: #1a1a1a;
+  --color-text-muted: #4a4a4a;
+  --color-border: gray;
+  --color-border-subtle: silver;
+  --color-border-hover: #4a4a4a;
+  --color-accent: #0050a0;
+  --color-accent-hover: #003870;
+  --color-accent-subtle: #0050a01a;
+  --color-code-bg: #f0f0f0;
+  --color-code-text: #1a1a1a;
+  --color-blockquote-border: gray;
+  --color-blockquote-bg: #f0f0f0;
+  --color-overlay-bg: #00000080;
+  --color-header-bg: #fffffff2;
+  --color-text-inverse: #fff;
+  --shadow-color: #0000001a;
+  --shadow-color-md: #0000001f;
+  --shadow-color-lg: #00000029;
+}
+
+/* High Contrast + Dark */
+[data-theme="high-contrast"][data-appearance="dark"] {
+  --color-bg: #000;
+  --color-bg-alt: #0a0a0a;
+  --color-bg-elevated: #0a0a0a;
+  --color-bg-code: #0a0a0a;
+  --color-bg-hover: #1a1a1a;
+  --color-text: #fff;
+  --color-text-secondary: #e6e6e6;
+  --color-text-muted: #b0b0b0;
+  --color-border: #666;
+  --color-border-subtle: #404040;
+  --color-border-hover: #999;
+  --color-accent: #60b0ff;
+  --color-accent-hover: #90ccff;
+  --color-accent-subtle: #60b0ff1f;
+  --color-code-bg: #0a0a0a;
+  --color-code-text: #e6e6e6;
+  --color-blockquote-border: #666;
+  --color-blockquote-bg: #0a0a0a;
+  --color-overlay-bg: #000000b3;
+  --color-header-bg: #000000f2;
+  --color-text-inverse: #000;
+  --shadow-color: #ffffff0d;
+  --shadow-color-md: #ffffff14;
+  --shadow-color-lg: #ffffff1a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-background: var(--color-bg);
+  --color-background-alt: var(--color-bg-alt);
+  --color-background-elevated: var(--color-bg-elevated);
+  --color-background-code: var(--color-bg-code);
+  --color-background-hover: var(--color-bg-hover);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-foreground: var(--color-text);
+  --color-foreground-secondary: var(--color-text-secondary);
+  --color-foreground-muted: var(--color-text-muted);
+  --color-foreground-inverse: var(--color-text-inverse);
+
+  --color-border: var(--color-border);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-hover: var(--color-border-hover);
+
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-subtle: var(--color-accent-subtle);
+
+  --color-code-bg: var(--color-code-bg);
+  --color-code-text: var(--color-code-text);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }

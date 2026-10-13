@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@pagesmith/site/css/standalone";
 import { PagesmithRuntime } from "@/components/PagesmithRuntime";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { ThemeProvider } from "next-themes";
+import { CustomThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,13 +12,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans">
         <PagesmithRuntime />
-        {children}
+        <ThemeProvider
+          attribute="data-appearance" // Sets data-appearance="light|dark"
+          defaultTheme="system"
+          enableSystem
+          themes={["light", "dark", "system"]}
+        >
+          <CustomThemeProvider>{children}</CustomThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
