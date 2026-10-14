@@ -1,6 +1,6 @@
 export function HeaderLogo() {
   return (
-    <a className="text-foreground hover:text-secondary-foreground cursor-pointer font-semibold">
+    <a className="text-foreground hover:text-secondary-foreground cursor-pointer font-semibold text-xl">
       Sujeet Jaiswal
     </a>
   );
