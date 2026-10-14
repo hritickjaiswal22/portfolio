@@ -1,10 +1,17 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: __dirname, // Force Turbopack to use this project folder as the root
-  },
-  serverExternalPackages: ["mathjax-full"], // Tell Next.js not to bundle this
+  // Add 'mdx' to the pageExtensions array
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  /* config options here */
+  cacheComponents: true,
+  partialPrefetching: true,
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add any remark/rehype plugins here if needed
+  extension: /\.mdx?$/,
+});
+
+export default withMDX(nextConfig);
