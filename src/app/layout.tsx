@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import "@pagesmith/site/css/standalone";
-import { PagesmithRuntime } from "@/components/PagesmithRuntime";
 import { ThemeProvider } from "next-themes";
+
+import "./globals.css";
 import { CustomThemeProvider } from "@/components/ThemeProvider";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,15 +13,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">
-        <PagesmithRuntime />
+      <body className="min-h-full flex flex-col font-sans pt-15">
         <ThemeProvider
           attribute="data-appearance" // Sets data-appearance="light|dark"
           defaultTheme="system"
           enableSystem
           themes={["light", "dark", "system"]}
         >
-          <CustomThemeProvider>{children}</CustomThemeProvider>
+          <CustomThemeProvider>
+            <Header />
+            {children}
+          </CustomThemeProvider>
         </ThemeProvider>
       </body>
     </html>
