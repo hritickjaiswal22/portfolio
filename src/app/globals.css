@@ -1,9 +1,14 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* Make shadcn's `dark:` utilities respond to next-themes' data-appearance attribute */
+@custom-variant dark (&:where([data-appearance="dark"], [data-appearance="dark"] *));
 
 :root {
   --font-sans:
     "Open Sans", "Open Sans Fallback", system-ui, -apple-system, "Segoe UI",
     sans-serif;
+  --radius: 0.625rem;
 }
 
 /* =========================================
@@ -12,27 +17,55 @@
 
 /* Paper + Light */
 [data-theme="paper"][data-appearance="light"] {
-  --color-bg: #f5f4f0;
-  --color-bg-alt: #eeeee8;
-  --color-bg-elevated: #f5f4f0;
-  --color-bg-code: #eeeee8;
-  --color-bg-hover: #e8e7e2;
-  --color-text: #111110;
-  --color-text-secondary: #333330;
-  --color-text-muted: #5a5a52;
-  --color-border: #d0cfc9;
-  --color-border-subtle: #e0dfd9;
-  --color-border-hover: #c0bfb9;
-  --color-accent: #1a1a18;
-  --color-accent-hover: #333330;
-  --color-accent-subtle: #1a1a180f;
-  --color-code-bg: #eeeee8;
-  --color-code-text: #333330;
-  --color-blockquote-border: #d0cfc9;
-  --color-blockquote-bg: #eeeee8;
-  --color-overlay-bg: #0000004d;
-  --color-header-bg: #f5f4f0;
-  --color-text-inverse: #f5f4f0;
+  /* --- shadcn core tokens --- */
+  --background: #f5f4f0; /* was --color-bg */
+  --foreground: #111110; /* was --color-text */
+  --card: #f5f4f0; /* was --color-bg-elevated */
+  --card-foreground: #111110; /* was --color-text */
+  --popover: #f5f4f0; /* was --color-bg-elevated */
+  --popover-foreground: #111110; /* was --color-text */
+  --primary: #1a1a18; /* was --color-accent */
+  --primary-foreground: #f5f4f0; /* was --color-text-inverse */
+  --secondary: #eeeee8; /* was --color-bg-alt */
+  --secondary-foreground: #333330; /* was --color-text-secondary */
+  --muted: #eeeee8; /* was --color-bg-alt */
+  --muted-foreground: #5a5a52; /* was --color-text-muted */
+  --accent: #e8e7e2; /* was --color-bg-hover (semantic shift — see note below) */
+  --accent-foreground: #111110; /* was --color-text */
+  --destructive: #b91c1c; /* new — shadcn requires it */
+  --destructive-foreground: #f5f4f0; /* new */
+  --border: #d0cfc9; /* was --color-border */
+  --input: #d0cfc9; /* was --color-border */
+  --ring: #1a1a18; /* was --color-accent (focus ring) */
+  --chart-1: #1a1a18;
+  --chart-2: #333330;
+  --chart-3: #5a5a52;
+  --chart-4: #a8a8a0;
+  --chart-5: #ccccca;
+  --sidebar: #eeeee8; /* was --color-bg-alt */
+  --sidebar-foreground: #111110; /* was --color-text */
+  --sidebar-primary: #1a1a18; /* was --color-accent */
+  --sidebar-primary-foreground: #f5f4f0; /* was --color-text-inverse */
+  --sidebar-accent: #e8e7e2; /* was --color-bg-hover */
+  --sidebar-accent-foreground: #111110; /* was --color-text */
+  --sidebar-border: #d0cfc9; /* was --color-border */
+  --sidebar-ring: #1a1a18; /* was --color-accent */
+
+  /* --- custom tokens (kept, no shadcn equivalent) --- */
+  --background-alt: #eeeee8; /* was --color-bg-alt */
+  --background-code: #eeeee8; /* was --color-bg-code / --color-code-bg */
+  --foreground-secondary: #333330; /* was --color-text-secondary */
+  --foreground-muted: #5a5a52; /* was --color-text-muted */
+  --foreground-inverse: #f5f4f0; /* was --color-text-inverse */
+  --border-subtle: #e0dfd9; /* was --color-border-subtle */
+  --border-hover: #c0bfb9; /* was --color-border-hover */
+  --accent-hover: #333330; /* was --color-accent-hover */
+  --accent-subtle: #1a1a180f; /* was --color-accent-subtle */
+  --code-text: #333330; /* was --color-code-text */
+  --blockquote-border: #d0cfc9;
+  --blockquote-bg: #eeeee8;
+  --overlay-bg: #0000004d;
+  --header-bg: #f5f4f0;
   --shadow-color: #0000000a;
   --shadow-color-md: #0000000a;
   --shadow-color-lg: #0000000f;
@@ -40,27 +73,54 @@
 
 /* Paper + Dark */
 [data-theme="paper"][data-appearance="dark"] {
-  --color-bg: #111110;
-  --color-bg-alt: #1a1a18;
-  --color-bg-elevated: #1e1e1c;
-  --color-bg-code: #1a1a18;
-  --color-bg-hover: #252524;
-  --color-text: #f5f4f0;
-  --color-text-secondary: #ccccca;
-  --color-text-muted: #a8a8a0;
-  --color-border: #2a2a28;
-  --color-border-subtle: #222220;
-  --color-border-hover: #3a3a38;
-  --color-accent: #e8e7e2;
-  --color-accent-hover: #ccccca;
-  --color-accent-subtle: #e8e7e214;
-  --color-code-bg: #1a1a18;
-  --color-code-text: #ccccca;
-  --color-blockquote-border: #333330;
-  --color-blockquote-bg: #1a1a18;
-  --color-overlay-bg: #00000080;
-  --color-header-bg: #111110;
-  --color-text-inverse: #111110;
+  --background: #111110; /* was --color-bg */
+  --foreground: #f5f4f0; /* was --color-text */
+  --card: #1e1e1c; /* was --color-bg-elevated */
+  --card-foreground: #f5f4f0; /* was --color-text */
+  --popover: #1e1e1c; /* was --color-bg-elevated */
+  --popover-foreground: #f5f4f0; /* was --color-text */
+  --primary: #e8e7e2; /* was --color-accent */
+  --primary-foreground: #111110; /* was --color-text-inverse */
+  --secondary: #1a1a18; /* was --color-bg-alt */
+  --secondary-foreground: #ccccca; /* was --color-text-secondary */
+  --muted: #1a1a18; /* was --color-bg-alt */
+  --muted-foreground: #a8a8a0; /* was --color-text-muted */
+  --accent: #252524; /* was --color-bg-hover */
+  --accent-foreground: #f5f4f0; /* was --color-text */
+  --destructive: #ef4444;
+  --destructive-foreground: #111110;
+  --border: #2a2a28; /* was --color-border */
+  --input: #2a2a28; /* was --color-border */
+  --ring: #e8e7e2; /* was --color-accent */
+  --chart-1: #f5f4f0;
+  --chart-2: #ccccca;
+  --chart-3: #a8a8a0;
+  --chart-4: #5a5a52;
+  --chart-5: #333330;
+  --sidebar: #1a1a18; /* was --color-bg-alt */
+  --sidebar-foreground: #f5f4f0; /* was --color-text */
+  --sidebar-primary: #e8e7e2; /* was --color-accent */
+  --sidebar-primary-foreground: #111110; /* was --color-text-inverse */
+  --sidebar-accent: #252524; /* was --color-bg-hover */
+  --sidebar-accent-foreground: #f5f4f0; /* was --color-text */
+  --sidebar-border: #2a2a28; /* was --color-border */
+  --sidebar-ring: #e8e7e2; /* was --color-accent */
+
+  /* --- custom tokens --- */
+  --background-alt: #1a1a18; /* was --color-bg-alt */
+  --background-code: #1a1a18; /* was --color-bg-code / --color-code-bg */
+  --foreground-secondary: #ccccca; /* was --color-text-secondary */
+  --foreground-muted: #a8a8a0; /* was --color-text-muted */
+  --foreground-inverse: #111110; /* was --color-text-inverse */
+  --border-subtle: #222220; /* was --color-border-subtle */
+  --border-hover: #3a3a38; /* was --color-border-hover */
+  --accent-hover: #ccccca; /* was --color-accent-hover */
+  --accent-subtle: #e8e7e214; /* was --color-accent-subtle */
+  --code-text: #ccccca; /* was --color-code-text */
+  --blockquote-border: #333330;
+  --blockquote-bg: #1a1a18;
+  --overlay-bg: #00000080;
+  --header-bg: #111110;
   --shadow-color: #0003;
   --shadow-color-md: #00000040;
   --shadow-color-lg: #0000004d;
@@ -72,27 +132,54 @@
 
 /* High Contrast + Light */
 [data-theme="high-contrast"][data-appearance="light"] {
-  --color-bg: #fff;
-  --color-bg-alt: #f0f0f0;
-  --color-bg-elevated: #fff;
-  --color-bg-code: #f0f0f0;
-  --color-bg-hover: #e6e6e6;
-  --color-text: #000;
-  --color-text-secondary: #1a1a1a;
-  --color-text-muted: #4a4a4a;
-  --color-border: gray;
-  --color-border-subtle: silver;
-  --color-border-hover: #4a4a4a;
-  --color-accent: #0050a0;
-  --color-accent-hover: #003870;
-  --color-accent-subtle: #0050a01a;
-  --color-code-bg: #f0f0f0;
-  --color-code-text: #1a1a1a;
-  --color-blockquote-border: gray;
-  --color-blockquote-bg: #f0f0f0;
-  --color-overlay-bg: #00000080;
-  --color-header-bg: #fffffff2;
-  --color-text-inverse: #fff;
+  --background: #ffffff; /* was --color-bg */
+  --foreground: #000000; /* was --color-text */
+  --card: #ffffff; /* was --color-bg-elevated */
+  --card-foreground: #000000; /* was --color-text */
+  --popover: #ffffff; /* was --color-bg-elevated */
+  --popover-foreground: #000000; /* was --color-text */
+  --primary: #0050a0; /* was --color-accent */
+  --primary-foreground: #ffffff; /* was --color-text-inverse */
+  --secondary: #f0f0f0; /* was --color-bg-alt */
+  --secondary-foreground: #1a1a1a; /* was --color-text-secondary */
+  --muted: #f0f0f0; /* was --color-bg-alt */
+  --muted-foreground: #4a4a4a; /* was --color-text-muted */
+  --accent: #e6e6e6; /* was --color-bg-hover */
+  --accent-foreground: #000000; /* was --color-text */
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #808080; /* was --color-border (gray) */
+  --input: #808080; /* was --color-border */
+  --ring: #0050a0; /* was --color-accent */
+  --chart-1: #0050a0;
+  --chart-2: #003870;
+  --chart-3: #1a1a1a;
+  --chart-4: #4a4a4a;
+  --chart-5: #808080;
+  --sidebar: #f0f0f0; /* was --color-bg-alt */
+  --sidebar-foreground: #000000; /* was --color-text */
+  --sidebar-primary: #0050a0; /* was --color-accent */
+  --sidebar-primary-foreground: #ffffff; /* was --color-text-inverse */
+  --sidebar-accent: #e6e6e6; /* was --color-bg-hover */
+  --sidebar-accent-foreground: #000000; /* was --color-text */
+  --sidebar-border: #808080; /* was --color-border */
+  --sidebar-ring: #0050a0; /* was --color-accent */
+
+  /* --- custom tokens --- */
+  --background-alt: #f0f0f0; /* was --color-bg-alt */
+  --background-code: #f0f0f0; /* was --color-bg-code / --color-code-bg */
+  --foreground-secondary: #1a1a1a; /* was --color-text-secondary */
+  --foreground-muted: #4a4a4a; /* was --color-text-muted */
+  --foreground-inverse: #ffffff; /* was --color-text-inverse */
+  --border-subtle: #c0c0c0; /* was --color-border-subtle (silver) */
+  --border-hover: #4a4a4a; /* was --color-border-hover */
+  --accent-hover: #003870; /* was --color-accent-hover */
+  --accent-subtle: #0050a01a; /* was --color-accent-subtle */
+  --code-text: #1a1a1a; /* was --color-code-text */
+  --blockquote-border: #808080;
+  --blockquote-bg: #f0f0f0;
+  --overlay-bg: #00000080;
+  --header-bg: #fffffff2;
   --shadow-color: #0000001a;
   --shadow-color-md: #0000001f;
   --shadow-color-lg: #00000029;
@@ -100,57 +187,131 @@
 
 /* High Contrast + Dark */
 [data-theme="high-contrast"][data-appearance="dark"] {
-  --color-bg: #000;
-  --color-bg-alt: #0a0a0a;
-  --color-bg-elevated: #0a0a0a;
-  --color-bg-code: #0a0a0a;
-  --color-bg-hover: #1a1a1a;
-  --color-text: #fff;
-  --color-text-secondary: #e6e6e6;
-  --color-text-muted: #b0b0b0;
-  --color-border: #666;
-  --color-border-subtle: #404040;
-  --color-border-hover: #999;
-  --color-accent: #60b0ff;
-  --color-accent-hover: #90ccff;
-  --color-accent-subtle: #60b0ff1f;
-  --color-code-bg: #0a0a0a;
-  --color-code-text: #e6e6e6;
-  --color-blockquote-border: #666;
-  --color-blockquote-bg: #0a0a0a;
-  --color-overlay-bg: #000000b3;
-  --color-header-bg: #000000f2;
-  --color-text-inverse: #000;
+  --background: #000000; /* was --color-bg */
+  --foreground: #ffffff; /* was --color-text */
+  --card: #0a0a0a; /* was --color-bg-elevated */
+  --card-foreground: #ffffff; /* was --color-text */
+  --popover: #0a0a0a; /* was --color-bg-elevated */
+  --popover-foreground: #ffffff; /* was --color-text */
+  --primary: #60b0ff; /* was --color-accent */
+  --primary-foreground: #000000; /* was --color-text-inverse */
+  --secondary: #0a0a0a; /* was --color-bg-alt */
+  --secondary-foreground: #e6e6e6; /* was --color-text-secondary */
+  --muted: #0a0a0a; /* was --color-bg-alt */
+  --muted-foreground: #b0b0b0; /* was --color-text-muted */
+  --accent: #1a1a1a; /* was --color-bg-hover */
+  --accent-foreground: #ffffff; /* was --color-text */
+  --destructive: #ef4444;
+  --destructive-foreground: #000000;
+  --border: #666666; /* was --color-border */
+  --input: #666666; /* was --color-border */
+  --ring: #60b0ff; /* was --color-accent */
+  --chart-1: #60b0ff;
+  --chart-2: #90ccff;
+  --chart-3: #e6e6e6;
+  --chart-4: #b0b0b0;
+  --chart-5: #666666;
+  --sidebar: #0a0a0a; /* was --color-bg-alt */
+  --sidebar-foreground: #ffffff; /* was --color-text */
+  --sidebar-primary: #60b0ff; /* was --color-accent */
+  --sidebar-primary-foreground: #000000; /* was --color-text-inverse */
+  --sidebar-accent: #1a1a1a; /* was --color-bg-hover */
+  --sidebar-accent-foreground: #ffffff; /* was --color-text */
+  --sidebar-border: #666666; /* was --color-border */
+  --sidebar-ring: #60b0ff; /* was --color-accent */
+
+  /* --- custom tokens --- */
+  --background-alt: #0a0a0a; /* was --color-bg-alt */
+  --background-code: #0a0a0a; /* was --color-bg-code / --color-code-bg */
+  --foreground-secondary: #e6e6e6; /* was --color-text-secondary */
+  --foreground-muted: #b0b0b0; /* was --color-text-muted */
+  --foreground-inverse: #000000; /* was --color-text-inverse */
+  --border-subtle: #404040; /* was --color-border-subtle */
+  --border-hover: #999999; /* was --color-border-hover */
+  --accent-hover: #90ccff; /* was --color-accent-hover */
+  --accent-subtle: #60b0ff1f; /* was --color-accent-subtle */
+  --code-text: #e6e6e6; /* was --color-code-text */
+  --blockquote-border: #666666;
+  --blockquote-bg: #0a0a0a;
+  --overlay-bg: #000000b3;
+  --header-bg: #000000f2;
   --shadow-color: #ffffff0d;
   --shadow-color-md: #ffffff14;
   --shadow-color-lg: #ffffff1a;
 }
 
+/* =========================================
+   TAILWIND BRIDGE
+   ========================================= */
 @theme inline {
-  --color-background: var(--color-bg);
-  --color-background-alt: var(--color-bg-alt);
-  --color-background-elevated: var(--color-bg-elevated);
-  --color-background-code: var(--color-bg-code);
-  --color-background-hover: var(--color-bg-hover);
+  /* shadcn core */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
-  --color-foreground: var(--color-text);
-  --color-foreground-secondary: var(--color-text-secondary);
-  --color-foreground-muted: var(--color-text-muted);
-  --color-foreground-inverse: var(--color-text-inverse);
+  /* radius scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 
-  --color-border: var(--color-border);
-  --color-border-subtle: var(--color-border-subtle);
-  --color-border-hover: var(--color-border-hover);
-
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-accent-subtle: var(--color-accent-subtle);
-
-  --color-code-bg: var(--color-code-bg);
-  --color-code-text: var(--color-code-text);
+  /* your custom tokens — same utility names as before, so nothing breaks */
+  --color-background-alt: var(--background-alt);
+  --color-background-code: var(--background-code);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-inverse: var(--foreground-inverse);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-hover: var(--border-hover);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-code-bg: var(--background-code);
+  --color-code-text: var(--code-text);
+  --color-blockquote-border: var(--blockquote-border);
+  --color-blockquote-bg: var(--blockquote-bg);
+  --color-overlay-bg: var(--overlay-bg);
+  --color-header-bg: var(--header-bg);
 }
 
-body {
-  background: var(--background);
-  font-family: var(--font-sans);
+/* =========================================
+   BASE
+   ========================================= */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
 }
