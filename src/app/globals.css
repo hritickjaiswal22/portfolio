@@ -1,3 +1,5 @@
+/* https://chat.deepseek.com/a/chat/s/47478802-0301-4bb7-83e2-b9bdfd80cb76 */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -9,6 +11,20 @@
     "Open Sans", "Open Sans Fallback", system-ui, -apple-system, "Segoe UI",
     sans-serif;
   --radius: 0.625rem;
+  --text-scale: 1;
+}
+
+/* =========================================
+   TEXT SIZE SCALE
+   ========================================= */
+[data-text-size="sm"] {
+  --text-scale: 0.875;
+}
+[data-text-size="md"] {
+  --text-scale: 1;
+}
+[data-text-size="lg"] {
+  --text-scale: 1.125;
 }
 
 /* =========================================
@@ -300,6 +316,21 @@
   --color-blockquote-bg: var(--blockquote-bg);
   --color-overlay-bg: var(--overlay-bg);
   --color-header-bg: var(--header-bg);
+
+  /* text sizes — scaled by --text-scale (does NOT affect spacing) */
+  --text-xs: calc(0.75rem * var(--text-scale));
+  --text-sm: calc(0.875rem * var(--text-scale));
+  --text-base: calc(1rem * var(--text-scale));
+  --text-lg: calc(1.125rem * var(--text-scale));
+  --text-xl: calc(1.25rem * var(--text-scale));
+  --text-2xl: calc(1.5rem * var(--text-scale));
+  --text-3xl: calc(1.875rem * var(--text-scale));
+  --text-4xl: calc(2.25rem * var(--text-scale));
+  --text-5xl: calc(3rem * var(--text-scale));
+  --text-6xl: calc(3.75rem * var(--text-scale));
+  --text-7xl: calc(4.5rem * var(--text-scale));
+  --text-8xl: calc(6rem * var(--text-scale));
+  --text-9xl: calc(8rem * var(--text-scale));
 }
 
 /* =========================================

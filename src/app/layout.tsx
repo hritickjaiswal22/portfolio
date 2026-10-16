@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 import { CustomThemeProvider } from "@/components/ThemeProvider";
+import { TextSizeProvider } from "@/components/text-size-provider";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
@@ -21,8 +22,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           themes={["light", "dark", "system"]}
         >
           <CustomThemeProvider>
-            <Header />
-            {children}
+            <TextSizeProvider>
+              <Header />
+              {children}
+            </TextSizeProvider>
           </CustomThemeProvider>
         </ThemeProvider>
       </body>
