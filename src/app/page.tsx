@@ -1,5 +1,9 @@
-import SiteAction from "@/components/site-action";
 import { cn } from "cn";
+
+import SiteAction from "@/components/site-action";
+import CopyButton from "@/components/copy-button";
+
+const EMAIL = "hritickjaiswal22@gmail.com";
 
 interface HomeDividerProps extends React.HTMLAttributes<HTMLHRElement> {
   className?: string;
@@ -25,14 +29,44 @@ function ExperienceList({ list }: ExperienceListProps) {
         >
           <span>•</span>
 
-          <p>{bullet}</p>
+          <p className="text-base">{bullet}</p>
         </div>
       ))}
     </div>
   );
 }
 
-export default function Home() {
+function HeroSection() {
+  return (
+    <section className="flex gap-3 px-4 py-8 flex-col justify-center items-center text-center">
+      <h1 className="text-3xl font-bold leading-5 text-foreground">
+        Hritick Jaiswal
+      </h1>
+
+      <p className="text-xl leading-6 text-secondary-foreground">
+        Full Stack Software Engineer
+      </p>
+
+      <div className="flex flex-wrap gap-3 mt-2 justify-center items-center">
+        <SiteAction
+          href="https://github.com/hritickjaiswal22"
+          forceNewTab={true}
+        >
+          GitHub
+        </SiteAction>
+
+        <SiteAction
+          href="https://www.linkedin.com/in/hritick-jaiswal"
+          forceNewTab={true}
+        >
+          LinkedIn
+        </SiteAction>
+      </div>
+    </section>
+  );
+}
+
+function WorkExperienceSection() {
   const fixerraWorkExperiencePoints = [
     "Architected an in-app SSFB payment journey using React, JavaScript and REST APIs, improving UX and reducing external redirects through UPI/Netbanking, UPI intent, async polling, retries and state recovery, processing Rs.14.5Cr+/month across 3K+ transactions.",
     "Led the 0→1 Next.js and TypeScript-based frontend build of the Recurring Deposit product as the sole developer, reusing existing FD architecture and components while adapting REST API and journey logic, launched to production and scaled to Rs.7L+/month in recurring transactions.",
@@ -56,119 +90,130 @@ export default function Home() {
   ];
 
   return (
-    <main className="max-w-[100ch] w-full mx-auto p-2">
-      <section className="flex gap-3 px-4 py-8 flex-col justify-center items-center text-center">
-        <h1 className="text-3xl font-bold leading-5 text-foreground">
+    <section className="px-2">
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold">Work History</h2>
+      </div>
+
+      <div>
+        <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
+          <div className="flex flex-col gap-1 md:flex-row md:gap-2">
+            <h3 className="text-xl font-semibold">Codebuddy</h3>
+            <p className="text-xl font-medium text-muted-foreground hidden md:block">
+              /
+            </p>
+            <p className="text-xl font-semibold text-muted-foreground">
+              Full Stack Software Engineer
+            </p>
+          </div>
+          <h4 className="font-semibold text-base">April 2026 - June 2026</h4>
+        </div>
+        <ExperienceList
+          list={[
+            "Built 15+ React Native screens using reusable TypeScript components, shared styling patterns, and Cursor to rapidly deliver a complete cross-platform frontend under a tight project deadline.",
+            "Engineered an AI-assisted BRD generation workflow using Python, React, and OpenAI/Claude APIs, integrating Figma context and prompt-driven generation to accelerate initial requirement drafting and enable conversational document refinement.",
+          ]}
+        />
+      </div>
+
+      <HomeDivider className="my-12" />
+
+      <div>
+        <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
+          <div className="flex flex-col gap-1 md:flex-row md:gap-2">
+            <h3 className="text-xl font-semibold">Fixerra</h3>
+            <p className="text-xl font-medium text-muted-foreground hidden md:block">
+              /
+            </p>
+            <p className="text-xl font-semibold text-muted-foreground">
+              Software Development Engineer
+            </p>
+          </div>
+          <h4 className="font-semibold text-base">July 2024 - March 2026</h4>
+        </div>
+        <ExperienceList list={fixerraWorkExperiencePoints} />
+      </div>
+
+      <HomeDivider className="my-12" />
+
+      <div>
+        <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
+          <div className="flex flex-col gap-1 md:flex-row md:gap-2">
+            <h3 className="text-xl font-semibold">Tooliqa</h3>
+            <p className="text-xl font-medium text-muted-foreground hidden md:block">
+              /
+            </p>
+            <p className="text-xl font-semibold text-muted-foreground">
+              Full Stack Software Engineer
+            </p>
+          </div>
+          <h4 className="font-semibold text-base">March 2023 - March 2024</h4>
+        </div>
+        <ExperienceList list={tooliqaExperiencePoints} />
+      </div>
+
+      <HomeDivider className="my-12" />
+
+      <div>
+        <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
+          <div className="flex flex-col gap-1 md:flex-row md:gap-2">
+            <h3 className="text-xl font-semibold">MyWays</h3>
+            <p className="text-xl font-medium text-muted-foreground hidden md:block">
+              /
+            </p>
+            <p className="text-xl font-semibold text-muted-foreground">
+              Software Engineer Intern
+            </p>
+          </div>
+          <h4 className="font-semibold text-base">
+            February 2022 - August 2022
+          </h4>
+        </div>
+        <ExperienceList list={mywaysWorkExperiencePoints} />
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <section className="flex-col flex justify-between items-start gap-4 pb-10 md:flex-row md:items-center">
+        <h1 className="text-base font-medium leading-4 text-foreground">
           Hritick Jaiswal
         </h1>
-
-        <p className="text-xl leading-6 text-secondary-foreground">
-          Full Stack Software Engineer
-        </p>
-
-        <div className="flex flex-wrap gap-3 mt-2 justify-center items-center">
-          <SiteAction
-            href="https://github.com/hritickjaiswal22"
-            forceNewTab={true}
+        <div className="flex items-center gap-4">
+          <a
+            className="text-base font-semibold leading-4 text-foreground hover:underline cursor-pointer"
+            href={`mailto:${EMAIL}`}
           >
-            GitHub
-          </SiteAction>
-
-          <SiteAction
-            href="https://www.linkedin.com/in/hritick-jaiswal"
-            forceNewTab={true}
-          >
-            LinkedIn
-          </SiteAction>
+            {EMAIL}
+          </a>
+          <CopyButton text={EMAIL} />
         </div>
       </section>
 
-      <HomeDivider className="my-12" />
+      <HomeDivider />
 
-      <section>
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold">Work History</h2>
-        </div>
+      <p className="text-center text-xs text-muted-foreground my-8">
+        Made with ❤ is maintained by Hritick Jaiswal
+      </p>
+    </footer>
+  );
+}
 
-        <div>
-          <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
-            <div className="flex flex-col gap-1 md:flex-row md:gap-2">
-              <h3 className="text-xl font-semibold">Codebuddy</h3>
-              <p className="text-xl font-medium text-muted-foreground hidden md:block">
-                /
-              </p>
-              <p className="text-xl font-semibold text-muted-foreground">
-                Full Stack Software Engineer
-              </p>
-            </div>
-            <h4 className="font-semibold text-base">April 2026 - June 2026</h4>
-          </div>
-          <ExperienceList
-            list={[
-              "Built 15+ React Native screens using reusable TypeScript components, shared styling patterns, and Cursor to rapidly deliver a complete cross-platform frontend under a tight project deadline.",
-              "Engineered an AI-assisted BRD generation workflow using Python, React, and OpenAI/Claude APIs, integrating Figma context and prompt-driven generation to accelerate initial requirement drafting and enable conversational document refinement.",
-            ]}
-          />
-        </div>
-
-        <HomeDivider className="my-12" />
-
-        <div>
-          <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
-            <div className="flex flex-col gap-1 md:flex-row md:gap-2">
-              <h3 className="text-xl font-semibold">Fixerra</h3>
-              <p className="text-xl font-medium text-muted-foreground hidden md:block">
-                /
-              </p>
-              <p className="text-xl font-semibold text-muted-foreground">
-                Software Development Engineer
-              </p>
-            </div>
-            <h4 className="font-semibold text-base">July 2024 - March 2026</h4>
-          </div>
-          <ExperienceList list={fixerraWorkExperiencePoints} />
-        </div>
-
-        <HomeDivider className="my-12" />
-
-        <div>
-          <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
-            <div className="flex flex-col gap-1 md:flex-row md:gap-2">
-              <h3 className="text-xl font-semibold">Tooliqa</h3>
-              <p className="text-xl font-medium text-muted-foreground hidden md:block">
-                /
-              </p>
-              <p className="text-xl font-semibold text-muted-foreground">
-                Full Stack Software Engineer
-              </p>
-            </div>
-            <h4 className="font-semibold text-base">March 2023 - March 2024</h4>
-          </div>
-          <ExperienceList list={tooliqaExperiencePoints} />
-        </div>
-
-        <HomeDivider className="my-12" />
-
-        <div>
-          <div className="flex mb-4 flex-col gap-5 justify-between md:flex-row">
-            <div className="flex flex-col gap-1 md:flex-row md:gap-2">
-              <h3 className="text-xl font-semibold">MyWays</h3>
-              <p className="text-xl font-medium text-muted-foreground hidden md:block">
-                /
-              </p>
-              <p className="text-xl font-semibold text-muted-foreground">
-                Software Engineer Intern
-              </p>
-            </div>
-            <h4 className="font-semibold text-base">
-              February 2022 - August 2022
-            </h4>
-          </div>
-          <ExperienceList list={mywaysWorkExperiencePoints} />
-        </div>
-      </section>
+export default function Home() {
+  return (
+    <main className="max-w-[100ch] w-full mx-auto p-2">
+      <HeroSection />
 
       <HomeDivider className="my-12" />
+
+      <WorkExperienceSection />
+
+      <HomeDivider className="my-12" />
+
+      <Footer />
     </main>
   );
 }
