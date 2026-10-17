@@ -178,11 +178,17 @@ function WorkExperienceSection() {
 function Footer() {
   return (
     <footer>
-      <section className="flex-col flex justify-between items-start gap-4 pb-10 md:flex-row md:items-center">
-        <h1 className="text-base font-medium leading-4 text-foreground">
-          Hritick Jaiswal
-        </h1>
-        <div className="flex items-center gap-4">
+      <section className="flex-col flex justify-center md:justify-between items-center gap-4 pb-10 md:flex-row md:items-center">
+        <div className="text-center md:text-start">
+          <h1 className="text-base font-medium leading-4 text-foreground">
+            Hritick Jaiswal
+          </h1>
+
+          <p className="text-muted-foreground text-sm mt-2">
+            Open to full-time and contract work
+          </p>
+        </div>
+        <div className="flex items-center gap-4 flex-wrap">
           <a
             className="text-base font-semibold leading-4 text-foreground hover:underline cursor-pointer"
             href={`mailto:${EMAIL}`}
