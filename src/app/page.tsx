@@ -49,6 +49,14 @@ function HeroSection() {
 
       <div className="flex flex-wrap gap-3 mt-2 justify-center items-center">
         <SiteAction
+          href="/articles"
+          forceNewTab={false}
+          className="bg-primary text-primary-foreground hover:bg-accent-hover hover:border-accent-hover"
+        >
+          Browse Articles
+        </SiteAction>
+
+        <SiteAction
           href="https://github.com/hritickjaiswal22"
           forceNewTab={true}
         >
