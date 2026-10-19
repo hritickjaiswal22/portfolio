@@ -1,10 +1,15 @@
+import Link from "next/link";
+
 import ThemeSwitcher from "@/components/theme-switcher";
 
 export function HeaderLogo() {
   return (
-    <a className="text-foreground hover:text-secondary-foreground cursor-pointer font-semibold text-xl">
+    <Link
+      href={"/"}
+      className="text-foreground hover:text-secondary-foreground cursor-pointer font-semibold text-xl"
+    >
       Hritick Jaiswal
-    </a>
+    </Link>
   );
 }
 
