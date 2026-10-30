@@ -1,56 +1,13 @@
 import Link from "next/link";
 
+import { SERIES } from "@/lib/series";
+
 interface SiteCardProps {
   name: string;
   description: string;
   tags: Array<string>;
   slug: string;
 }
-
-const series = [
-  {
-    series: "Frontend System Design",
-    description:
-      "Rendering, client performance, state, and frontend system design exercises.",
-    artciles: [
-      {
-        name: "Modern Rendering Architectures: RSC, Streaming, Islands, and Resumability",
-        description:
-          "How modern frameworks compose static, server-streamed, and client-only rendering inside one page — React Server Components, Suspense streaming, islands architecture, Partial Prerendering, and Qwik resumability — with a decision framework grounded in INP and bundle cost.",
-        tags: ["Frontend", "Rendering", "React"],
-        slug: "rendering-architectures",
-      },
-      {
-        name: "Modern Rendering Architectures: RSC, Streaming, Islands, and Resumability",
-        description:
-          "How modern frameworks compose static, server-streamed, and client-only rendering inside one page — React Server Components, Suspense streaming, islands architecture, Partial Prerendering, and Qwik resumability — with a decision framework grounded in INP and bundle cost.",
-        tags: ["Frontend", "Rendering", "React"],
-        slug: "rendering-architectures2",
-      },
-    ],
-  },
-  {
-    series: "Frontend System Design2",
-    description:
-      "Rendering, client performance, state, and frontend system design exercises.",
-    artciles: [
-      {
-        name: "Modern Rendering Architectures: RSC, Streaming, Islands, and Resumability",
-        description:
-          "How modern frameworks compose static, server-streamed, and client-only rendering inside one page — React Server Components, Suspense streaming, islands architecture, Partial Prerendering, and Qwik resumability — with a decision framework grounded in INP and bundle cost.",
-        tags: ["Frontend", "Rendering", "React"],
-        slug: "rendering-architectures",
-      },
-      {
-        name: "Modern Rendering Architectures: RSC, Streaming, Islands, and Resumability",
-        description:
-          "How modern frameworks compose static, server-streamed, and client-only rendering inside one page — React Server Components, Suspense streaming, islands architecture, Partial Prerendering, and Qwik resumability — with a decision framework grounded in INP and bundle cost.",
-        tags: ["Frontend", "Rendering", "React"],
-        slug: "rendering-architectures2",
-      },
-    ],
-  },
-];
 
 function SiteCard({ description, name, tags, slug }: SiteCardProps) {
   return (
@@ -79,27 +36,25 @@ function SiteCard({ description, name, tags, slug }: SiteCardProps) {
 
 function Articles() {
   return (
-    <article className="py-8 px-2">
-      <h1 className="text-3xl font-bold mb-4">Articles</h1>
-
-      <p className="text-base text-secondary-foreground mb-8">
-        Browse by series or pick an article to read.
-      </p>
-
-      {series.map(({ artciles, description, series }) => (
-        <section key={series}>
-          <h2 className="mt-10 mb-3 text-2xl font-semibold pb-2 border-b border-b-border-subtle">
-            {series}
-          </h2>
-
-          <p className="text-muted-foreground text-sm mb-4">{description}</p>
-
-          {artciles.map((artcile) => (
-            <SiteCard key={artcile.slug} {...artcile} />
-          ))}
-        </section>
-      ))}
-    </article>
+    <main className="max-w-6xl w-full mx-auto p-2">
+      <article className="py-8 px-2">
+        <h1 className="text-3xl font-bold mb-4">Articles</h1>
+        <p className="text-base text-secondary-foreground mb-8">
+          Browse by series or pick an article to read.
+        </p>
+        {SERIES.map(({ artciles, description, series, id }) => (
+          <section key={id}>
+            <h2 className="mt-10 mb-3 text-2xl font-semibold pb-2 border-b border-b-border-subtle">
+              {series}
+            </h2>
+            <p className="text-muted-foreground text-sm mb-4">{description}</p>
+            {artciles.map((artcile) => (
+              <SiteCard key={artcile.slug} {...artcile} />
+            ))}
+          </section>
+        ))}
+      </article>
+    </main>
   );
 }
 
