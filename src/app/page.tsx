@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 import SiteAction from "@/components/site-action";
 import CopyButton from "@/components/copy-button";
