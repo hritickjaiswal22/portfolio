@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import Link from "next/link";
 
 interface SiteActionProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
