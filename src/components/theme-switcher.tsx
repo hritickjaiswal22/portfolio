@@ -35,7 +35,11 @@ export default function ThemeSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="ghost" className={"w-9 h-9 cursor-pointer"}>
+          <Button
+            variant="ghost"
+            className={"w-9 h-9 cursor-pointer"}
+            aria-label="Theme settings"
+          >
             <SunMedium
               style={{
                 width: "18px",
